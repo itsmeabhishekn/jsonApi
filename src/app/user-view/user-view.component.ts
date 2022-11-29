@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-user-view',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-view.component.css']
 })
 export class UserViewComponent {
-
+  constructor(private api:ApiService){
+    api.userInfoData().subscribe(
+      (response)=>{
+        this.data = response
+      }
+    )
+  }
+  data:any={}
 }

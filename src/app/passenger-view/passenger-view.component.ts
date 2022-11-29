@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-passenger-view',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./passenger-view.component.css']
 })
 export class PassengerViewComponent {
+
+  constructor(private api:ApiService){
+    api.passengerData().subscribe(
+      (response)=>{
+        this.passengers = response
+      }
+    )
+  }
+  passengers:any = {}
 
 }

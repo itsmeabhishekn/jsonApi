@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-quotes-view',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./quotes-view.component.css']
 })
 export class QuotesViewComponent {
-
+  constructor(private api:ApiService){
+    api.quotesData().subscribe(
+      (response)=>{
+        this.data = response
+      }
+    )
+  }
+  data:any = {}
 }
